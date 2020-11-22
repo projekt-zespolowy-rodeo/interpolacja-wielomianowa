@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+  
+    <title>Interpolacja Wielomianowa</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-text text-white mx-auto h2">
+           Interpolacja Wielomianowa - metoda Hermite'a
+        </span>
+    </nav>
+    
+    <div class="card mt-5  w-50 mx-auto">
+        <div class="card-header h4">
+            Prognoza rozwoju przestępczości
+          </div>
+        <div class="card-body">
+            <form class="form-inline">
+                <label class="sr-only" for="rok">Rok</label>
+                <input type="number" class="form-control mb-2 mr-sm-2" id="rok" placeholder="Rok">
+
+                <label class="sr-only" for="iloscPrzestepstw">Ilość przestępstw</label>
+                <input type="number" class="form-control mb-2 mr-sm-2" id="iloscPrzestepstw" placeholder="Ilość przestępstw">
+
+                <label class="sr-only" for="iloscPrzestepstw">Wartość pochodnej pierwszego stopnia</label>
+                <input type="text" class="form-control mb-2 mr-sm-2" id="pochodna" placeholder="Wartość pochodnej">
+               
+                <button type="submit" class="btn btn-primary mb-2">Dodaj</button>
+            </form>
+            <table class="table mt-3">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Rok</th>
+                    <th scope="col">Ilość Przestępstw</th>
+                    <th scope="col">Wartość Pochodnej</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody">
+
+                </tbody>
+              </table>
+              <div id="polyniomial"></div>
+        </div>
+      </div>
+      <script src="script.js"></script>
+</body>
+</html>
