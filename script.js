@@ -6,6 +6,39 @@ let list = document.getElementById('tableBody')
 var data = []
 let polyniomaBox = document.getElementById('polyniomial')
 form.addEventListener('submit', createList);
+let input = document.querySelector('fileselector')
+
+function readSingleFile(e) {
+    document.getElementById("add").disabled = true;
+    var file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e){
+        var content = e.target.result;
+        displayContents(content);
+    };
+
+    reader.readAsText(file);
+
+  }
+
+  function displayContents(content){
+    var lines = content.split(/\r\n|\n/);
+
+    for (i=0; i<lines.length;i++){
+        var number = lines[i].split(" ");
+        var year = number[0];
+        var crime_number = number[1];
+        var deriv = number[2];
+        createListFromFile(year, crime_number, deriv);
+    }
+
+
+  }
+  
+document.getElementById('file-selector').addEventListener('change', readSingleFile, false);
 
 function deleteRow(o){
 
@@ -21,8 +54,45 @@ function deleteRow(o){
     }
 
     p.parentNode.removeChild(p);
-    console.log("Array after deletion: "+data)
+    console.log("Array after deletion: "+data) 
+    if (data.length == 0){
+        document.getElementById("add").disabled = false;
+    }
 
+}
+
+function createListFromFile(year, crime_number, derivative){
+
+     if(year != '' && crime_number !=''){
+         let list_row = document.createElement('tr')
+         list_row.innerHTML="<td>"+year+"</td>"+"<td>"+crime_number+"</td>"+"<td>"+derivative+"</td>"+"<td>"+"<button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(this)\">Usuń</button>"+"</td>"
+         list.appendChild(list_row)
+         var temp_table =[]
+         if (derivative != ""){
+            temp_table=derivative.split(" ")
+         }
+         var temp = []
+         if (temp_table.length != 0){
+         for(var element of temp_table){
+         temp.push(parseInt(element))
+         }
+         data.push([parseInt(year), parseInt(crime_number), temp])
+         }
+         else{
+             data.push([parseInt(year), parseInt(crime_number)])
+         }
+ 
+         console.log("Added values: ["+year+", "+crime_number+", "+derivative+"]")
+         console.log("Array after addition: "+data);
+ 
+         if(data.length==2)
+             interpolation(data)
+         
+     }
+ 
+         
+ 
+ 
 }
 
 function createList(e){

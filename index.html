@@ -18,6 +18,10 @@
         <div class="card-header h4">
             Prognoza rozwoju przestępczości
           </div>
+          <div class="mx-3">
+            <p>Wczytaj z pliku</p>
+            <input type="file" id="file-selector" accept=".txt, .json">
+          </div>
         <div class="card-body">
             <form class="form-inline">
                 <label class="sr-only" for="rok">Rok</label>
@@ -29,7 +33,7 @@
                 <label class="sr-only" for="iloscPrzestepstw">Wartość pochodnej pierwszego stopnia</label>
                 <input type="text" class="form-control mb-2 mr-sm-2" id="pochodna" placeholder="Wartość pochodnej">
                
-                <button type="submit" class="btn btn-primary mb-2">Dodaj</button>
+                <button type="submit" id="add" class="btn btn-primary mb-2">Dodaj</button>
             </form>
             <table class="table mt-3">
                 <thead class="thead-light">
